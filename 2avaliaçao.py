@@ -1,18 +1,7 @@
-"Alunos: Andressa Felix e Caio Nikolas"
-class Seguro:  # classe pai
+class Seguro:
     def __init__(self, num_apolice: int, proprietario):
-        self.__num_apolice = num_apolice
-        self.__proprietario = proprietario
-
-
-    @property
-    def num_apolice(self):
-        return self.__num_apolice
-
-    @property
-    def proprietario(self):
-        return self.__proprietario
-
+        self._num_apolice = num_apolice
+        self._proprietario = proprietario
 
     def calcularValor(self):
         pass
@@ -22,7 +11,6 @@ class Seguro:  # classe pai
 
     def __str__(self):
         pass
-
 
 
 class Cliente:
@@ -39,16 +27,9 @@ class Cliente:
     def nome(self):
         return self.__nome
 
-    @property  # idade muda?
+    @property
     def idade(self):
         return self.__idade
-
-
-    def idade(self):
-        pass
-
-    def nome(self):
-        pass
 
 
 class SeguroVida(Seguro):
@@ -61,13 +42,29 @@ class SeguroVida(Seguro):
         return self.__nome_beneficiario
 
     def calcularValor(self):
-        pass
+        if self._proprietario.idade <= 30:
+            return 800.00
+        elif 31 <= self._proprietario.idade <= 50:
+            return 1300.00
+        else:
+            return 1600.00
 
     def calcularPremio(self):
-        pass
+        if self._proprietario.idade <= 30:
+            return 50000.00
+        elif 31 <= self._proprietario.idade <= 50:
+            return 30000.00
+        else:
+            return 20000.00
 
     def __str__(self):
-        pass
+        return f'''
+        {'-' * 10 + ' S E G U R O  D E  V I D A ' + '-' * 10}
+        Número da Apólice:   {self._num_apolice}
+        Segurado:            {self._proprietario.nome}
+        Valor:               {self.calcularValor()}
+        Prêmio:              {self.calcularPremio()}
+        '''
 
 
 class SeguroAutomovel(Seguro):
@@ -95,17 +92,69 @@ class SeguroAutomovel(Seguro):
     def valor_automovel(self):
         return self.__valor_automovel
 
-
     def calcularValor(self):
-        pass
+        return 0.03 * self.__valor_automovel
 
     def calcularPremio(self):
-        pass
+        return 0.8 * self.__valor_automovel
 
     def calcularFranquia(self):
-        pass
+        return 0.4 * self.calcularValor()
 
     def __str__(self):
-        pass
+        return f'''
+        {'-' * 10 + ' S E G U R O  A U T O M O V E L ' + '-' * 10}
+        Número da Apólice:   {self._num_apolice}
+        Segurado:            {self._proprietario.nome}
+        Valor:               {self.calcularValor()}
+        Prêmio:              {self.calcularPremio()}
+        '''
 
 
+class ControleDeSeguros:
+    def __init__(self):
+        self.__seguros = []
+
+    def cadastrarSeguro(self, seguro: Seguro):
+        self.__seguros.append(seguro)
+
+    def imprimirRelatorio(self):
+        segvida = segauto = valor_total = premio_total = 0
+        print("=" * 10 + " Relatório de Seguros " + "=" * 10)
+        for seguro in self.__seguros:
+            print(seguro)
+            valor_total += seguro.calcularValor()
+            premio_total += seguro.calcularPremio()
+            if isinstance(seguro, SeguroVida):
+                segvida += 1
+            elif isinstance(seguro, SeguroAutomovel):
+                segauto += 1
+        print(f"Seguros de vida:        {segvida}")
+        print(f"Seguros de Automóveis:  {segauto}")
+        print(f"Valor total:            {valor_total}")
+        print(f"Prêmio Total:           {premio_total}")
+
+
+if __name__ == '__main__':
+    clientes = [
+        Cliente("08272891823", "Andressa", 21),
+        Cliente("19283754312", "Nikolas", 32),
+        Cliente("92838302928", "Caio", 15),
+        Cliente("76767788899", "Allyson", 31),
+        Cliente("00099988764", "Lucas", 32),
+        Cliente("12123423411", "Guilherme", 50),
+        Cliente("12123423333", "Julia", 19)
+    ]
+
+    controle = ControleDeSeguros()
+    controle.cadastrarSeguro(SeguroAutomovel(42424, "Toyota Camry", 2022, 10000.0, 2626, clientes[0]))
+    controle.cadastrarSeguro(SeguroAutomovel(2222, "Nissan Altima", 2021, 15000.0, 312, clientes[1]))
+    controle.cadastrarSeguro(SeguroVida(clientes[6].nome, 190128, clientes[6]))
+    controle.cadastrarSeguro(SeguroVida(clientes[1].nome, 11112, clientes[1]))
+    controle.cadastrarSeguro(SeguroAutomovel(323443, "Jeep Wrangler", 2023, 20000.0, 566, clientes[2]))
+    controle.cadastrarSeguro(SeguroAutomovel(4455, "Volkswagen Golf", 2020, 18000.0, 101112, clientes[4]))
+    controle.cadastrarSeguro(SeguroVida(clientes[2].nome, 7, clientes[2]))
+    controle.cadastrarSeguro(SeguroVida(clientes[4].nome, 8, clientes[4]))
+    controle.cadastrarSeguro(SeguroAutomovel(22, "Honda Civic", 2022, 25000.0, 131415, clientes[3]))
+    controle.cadastrarSeguro(SeguroAutomovel(9, "Tesla Model S", 2023, 22000.0, 161718, clientes[6]))
+    controle.imprimirRelatorio()

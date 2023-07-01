@@ -1,3 +1,5 @@
+''' Alunos: Andressa Felix e Caio Nikolas '''
+
 class Seguro:
     def __init__(self, num_apolice: int, proprietario):
         self._num_apolice = num_apolice

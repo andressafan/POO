@@ -1,3 +1,4 @@
+"Alunos: Andressa Felix e Caio Nikolas"
 class Seguro:  # classe pai
     def __init__(self, num_apolice: int, proprietario):
         self.__num_apolice = num_apolice

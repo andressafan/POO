@@ -138,25 +138,24 @@ class ControleDeSeguros:
 
 
 if __name__ == '__main__':
-    clientes = [
-        Cliente("08272891823", "Andressa", 21),
-        Cliente("19283754312", "Nikolas", 32),
-        Cliente("92838302928", "Caio", 15),
-        Cliente("76767788899", "Allyson", 31),
-        Cliente("00099988764", "Lucas", 32),
-        Cliente("12123423411", "Guilherme", 50),
-        Cliente("12123423333", "Julia", 19)
-    ]
+    cliente1 = Cliente("08272891823", "Andressa", 21)
+    cliente2 = Cliente("19283754312", "Nikolas", 32)
+    cliente3 = Cliente("92838302928", "Caio", 15)
+    cliente4 = Cliente("76767788899", "Allyson", 31)
+    cliente5 = Cliente("00099988764", "Lucas", 32)
+    cliente6 = Cliente("12123423411", "Guilherme", 50)
+    cliente7 = Cliente("12123423333", "Julia", 19)
+
 
     controle = ControleDeSeguros()
-    controle.cadastrarSeguro(SeguroAutomovel(42424, "Toyota Camry", 2022, 10000.0, 2626, clientes[0]))
-    controle.cadastrarSeguro(SeguroAutomovel(2222, "Nissan Altima", 2021, 15000.0, 312, clientes[1]))
-    controle.cadastrarSeguro(SeguroVida(clientes[6].nome, 190128, clientes[6]))
-    controle.cadastrarSeguro(SeguroVida(clientes[1].nome, 11112, clientes[1]))
-    controle.cadastrarSeguro(SeguroAutomovel(323443, "Jeep Wrangler", 2023, 20000.0, 566, clientes[2]))
-    controle.cadastrarSeguro(SeguroAutomovel(4455, "Volkswagen Golf", 2020, 18000.0, 101112, clientes[4]))
-    controle.cadastrarSeguro(SeguroVida(clientes[2].nome, 7, clientes[2]))
-    controle.cadastrarSeguro(SeguroVida(clientes[4].nome, 8, clientes[4]))
-    controle.cadastrarSeguro(SeguroAutomovel(22, "Honda Civic", 2022, 25000.0, 131415, clientes[3]))
-    controle.cadastrarSeguro(SeguroAutomovel(9, "Tesla Model S", 2023, 22000.0, 161718, clientes[6]))
+    controle.cadastrarSeguro(SeguroAutomovel(42424, "Toyota Camry", 2022, 10000.0, 2626, cliente1))
+    controle.cadastrarSeguro(SeguroAutomovel(2222, "Nissan Altima", 2021, 15000.0, 312, cliente2))
+    controle.cadastrarSeguro(SeguroVida(cliente6.nome, 190128, cliente6))
+    controle.cadastrarSeguro(SeguroVida(cliente2.nome, 11112, cliente2))
+    controle.cadastrarSeguro(SeguroAutomovel(323443, "Jeep Wrangler", 2023, 20000.0, 566, cliente3))
+    controle.cadastrarSeguro(SeguroAutomovel(4455, "Volkswagen Golf", 2020, 18000.0, 101112, cliente5))
+    controle.cadastrarSeguro(SeguroVida(cliente3.nome, 7, cliente3))
+    controle.cadastrarSeguro(SeguroVida(cliente5.nome, 8, cliente5))
+    controle.cadastrarSeguro(SeguroAutomovel(22, "Honda Civic", 2022, 25000.0, 131415, cliente4))
+    controle.cadastrarSeguro(SeguroAutomovel(9, "Tesla Model S", 2023, 22000.0, 161718, cliente6))
     controle.imprimirRelatorio()

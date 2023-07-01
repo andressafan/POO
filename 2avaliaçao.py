@@ -122,7 +122,6 @@ class ControleDeSeguros:
 
     def imprimirRelatorio(self):
         segvida = segauto = valor_total = premio_total = 0
-        print("=" * 10 + " Relatório de Seguros " + "=" * 10)
         for seguro in self.__seguros:
             print(seguro)
             valor_total += seguro.calcularValor()
@@ -131,10 +130,12 @@ class ControleDeSeguros:
                 segvida += 1
             elif isinstance(seguro, SeguroAutomovel):
                 segauto += 1
-        print(f"Seguros de vida:        {segvida}")
-        print(f"Seguros de Automóveis:  {segauto}")
-        print(f"Valor total:            {valor_total}")
-        print(f"Prêmio Total:           {premio_total}")
+        print(f''' 
+        {'-' * 10 + ' R E L A T O R I O ' + '-' * 10}
+        Seguros de vida:        {segvida}
+        Seguros de Automóveis:  {segauto}
+        Valor total:            {valor_total}
+        Prêmio Total:           {premio_total}''')
 
 
 if __name__ == '__main__':
@@ -145,7 +146,6 @@ if __name__ == '__main__':
     cliente5 = Cliente("00099988764", "Lucas", 32)
     cliente6 = Cliente("12123423411", "Guilherme", 50)
     cliente7 = Cliente("12123423333", "Julia", 19)
-
 
     controle = ControleDeSeguros()
     controle.cadastrarSeguro(SeguroAutomovel(42424, "Toyota Camry", 2022, 10000.0, 2626, cliente1))
@@ -159,3 +159,4 @@ if __name__ == '__main__':
     controle.cadastrarSeguro(SeguroAutomovel(22, "Honda Civic", 2022, 25000.0, 131415, cliente4))
     controle.cadastrarSeguro(SeguroAutomovel(9, "Tesla Model S", 2023, 22000.0, 161718, cliente6))
     controle.imprimirRelatorio()
+
